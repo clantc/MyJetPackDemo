@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="CustomBindingName">
+
+        <import
+            alias="user1"
+            type="com.clant.jetpackdemo.databind.UserBean"></import>
+
+        <import type="com.clant.jetpackdemo.databind.UserBean"></import>
+
+        <variable
+            name="userBean"
+            type="UserBean" />
+
+
+        <variable
+            name="userBean2"
+            type="com.clant.jetpackdemo.databind.UserBean_OneWay" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/tv_show_count"
+                android:layout_width="wrap_content"
+                android:layout_height="19dp"
+                android:text="显示结果"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_red"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_red"
+                app:layout_constraintTop_toTopOf="@+id/btn_red" />
+
+            <Button
+                android:id="@+id/btn_add"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="加法"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_red"
+                app:layout_constraintEnd_toStartOf="@+id/btn_red"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/btn_red" />
+
+            <Button
+                android:id="@+id/btn_red"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="减法"
+                app:layout_constraintBottom_toTopOf="@+id/view"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="112dp"
+                android:background="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></View>
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="姓名"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_age"
+                app:layout_constraintEnd_toStartOf="@+id/et_age"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/et_age">
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/et_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="36dp"
+                android:hint="年龄"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view">
+
+            </EditText>
+
+            <EditText
+                android:id="@+id/et_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="性别"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/et_age"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/et_age"
+                app:layout_constraintTop_toTopOf="@+id/et_age">
+
+            </EditText>
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{userBean.name, default=默认姓名}"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_age"
+                app:layout_constraintEnd_toStartOf="@+id/tv_age"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_age" />
+
+            <TextView
+                android:id="@+id/tv_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@{String.valueOf(userBean.age), default=默认年龄}"
+                android:textSize="20sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_age" />
+
+            <TextView
+                android:id="@+id/tv_sex"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{userBean.sex, default=性别}"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_age"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_age"
+                app:layout_constraintTop_toTopOf="@+id/tv_age" />
+
+            <Button
+                android:id="@+id/btn_on_way_binding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="单向绑定1"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_two_way_binding"
+                app:layout_constraintEnd_toStartOf="@+id/btn_two_way_binding"
+                app:layout_constraintStart_toStartOf="parent" />
+
+
+            <Button
+                android:id="@+id/btn_two_way_binding"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="单向绑定2"
+                app:layout_constraintBottom_toTopOf="@+id/view3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="默认显示"
+                android:text='@{userBean2.name +"|"+ userBean2.age +"|"+ userBean2.sex}'
+                android:textSize="10sp"
+                app:layout_constraintBottom_toBottomOf="@+id/btn_two_way_binding"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/btn_two_way_binding"
+                app:layout_constraintTop_toTopOf="@+id/btn_two_way_binding" />
+
+            <View
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="340dp"
+                android:background="#000000"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"></View>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>
