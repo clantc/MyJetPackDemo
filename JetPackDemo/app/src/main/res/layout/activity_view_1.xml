@@ -7,15 +7,26 @@
 
     </data>
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-    <com.clant.jetpackdemo.view_pkg.ViewText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#00ff00"
-        android:padding="10dp"
-        app:tv_color="#ff0000"
-        app:tv_size="20sp"
-        app:tv_value="显示内容" />
+        <com.clant.jetpackdemo.view_pkg.ViewText
+            android:id="@+id/view_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="#00ff00"
+            app:tv_color="#ff0000"
+            app:tv_size="20sp"
+            app:tv_value="显示内容" />
+
+        <com.clant.jetpackdemo.view_pkg.ViewSpeed
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toEndOf="@+id/view_text"
+            android:background="@color/colorAccent" />
+
+    </RelativeLayout>
 
 
 </layout>
