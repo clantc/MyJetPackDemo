@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ViewText">
+        <attr name="tv_size" format="dimension" />
+        <attr name="tv_color" format="color" />
+        <attr name="tv_value" format="string" />
+
+        <attr name="android:layout_width"/>
+        <attr name="android:layout_height"/>
+
+    </declare-styleable>
+
+</resources>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="ViewActivityBind">
+
+    </data>
+
+
+    <com.clant.jetpackdemo.view_pkg.ViewText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#00ff00"
+        android:padding="10dp"
+        app:tv_color="#ff0000"
+        app:tv_size="20sp"
+        app:tv_value="显示内容" />
+
+
+</layout>

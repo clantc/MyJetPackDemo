@@ -4,13 +4,13 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 28
     buildToolsVersion "29.0.3"
 
     defaultConfig {
         applicationId "com.clant.jetpackdemo"
         minSdkVersion 23
-        targetSdkVersion 30
+        targetSdkVersion 28
         versionCode 1
         versionName "1.0"
 
@@ -24,12 +24,9 @@ android {
         }
     }
 
-    viewBinding {
-        enabled = true
-    }
-
-    dataBinding {
-        enabled = true
+    buildFeatures{
+        viewBinding = true
+        dataBinding = true
     }
 
 }
