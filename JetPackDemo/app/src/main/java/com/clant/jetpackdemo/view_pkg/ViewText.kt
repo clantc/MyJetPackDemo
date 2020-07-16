@@ -20,6 +20,7 @@ class ViewText : View {
     private var mLayoutWidth: Int = 0
     private var mLayoutHeight: Int = 0
     private val mRect: Rect = Rect()
+    private var mMaxCount: Int = 0
 
     constructor(context: Context?) : this(context, null)
     constructor(context: Context?, attrs: AttributeSet?) : this(context, attrs, 0)
@@ -45,12 +46,23 @@ class ViewText : View {
         mPaint.color = tv_color
         mPaint.textSize = tv_size
 
+
+
+        for (i in 1 until tv_value.length) {
+            var maxWidth = mPaint.measureText(tv_value.substring(0, i))
+            if(maxWidth > mLayoutWidth){
+                mMaxCount = i
+                break
+            }
+        }
+
+
         mPaint.getTextBounds(tv_value, 0, tv_value.length, mRect)
         mFrontMetrics = mPaint.fontMetrics
     }
 
     companion object {
-        val fxy = "fxy"
+        val ycq = "ycq"
     }
 
 
@@ -72,7 +84,6 @@ class ViewText : View {
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
-        Log.i(fxy, "${paddingLeft}   ${paddingTop}  ${paddingRight}  ${paddingBottom}")
         canvas.drawText(
             tv_value,
             0f + paddingLeft,
