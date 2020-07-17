@@ -89,9 +89,9 @@ class ViewSpeed : View {
         canvas.drawArc(mRect, 135f, 270f, false, mPaint)
 
 
-        mPathMeasure.getSegment(0f, mPathMeasure.length * mChangeValue, mPathUse, true)
+        mPathMeasure.getSegment(-1f, mPathMeasure.length * mChangeValue, mPathUse, true)
         canvas.drawPath(mPathUse, mPaintChange)
-        var percent: Int = (mChangeValue * 100).toInt()
+        var percent: Int = (mChangeValue * 10000).toInt()
         canvas.drawText(percent.toString(), -25f, 25f, mPaintText)
 
     }

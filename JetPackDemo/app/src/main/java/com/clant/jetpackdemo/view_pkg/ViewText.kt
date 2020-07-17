@@ -50,7 +50,7 @@ class ViewText : View {
 
         for (i in 1 until tv_value.length) {
             var maxWidth = mPaint.measureText(tv_value.substring(0, i))
-            if(maxWidth > mLayoutWidth){
+            if (maxWidth > mLayoutWidth) {
                 mMaxCount = i
                 break
             }
@@ -59,6 +59,10 @@ class ViewText : View {
 
         mPaint.getTextBounds(tv_value, 0, tv_value.length, mRect)
         mFrontMetrics = mPaint.fontMetrics
+
+
+
+
     }
 
     companion object {
@@ -77,18 +81,47 @@ class ViewText : View {
             ),
             getChildMeasureSpec(
                 heightMeasureSpec, mLayoutHeight,
-                (mFrontMetrics.descent - mFrontMetrics.ascent).toInt(), paddingTop + paddingBottom
+                (mFrontMetrics.bottom - mFrontMetrics.top).toInt(), paddingTop + paddingBottom
             )
         )
     }
 
     override fun onDraw(canvas: Canvas) {
         super.onDraw(canvas)
+        var baseY =
+            height / 2 + (mFrontMetrics.bottom - mFrontMetrics.top) / 2 - mFrontMetrics.bottom
         canvas.drawText(
             tv_value,
             0f + paddingLeft,
-            -mFrontMetrics.ascent + paddingTop,
+            paddingTop + baseY,
             mPaint
+        )
+        mPaint.color = Color.BLACK
+        canvas.drawLine(0f, baseY, 1000f, baseY, mPaint)
+
+        var top = height / 2 + (mFrontMetrics.bottom - mFrontMetrics.top) / 2 + mFrontMetrics.top
+        canvas.drawLine(0f, top, 1000f, top, mPaint)
+
+        var bottom =
+            height / 2 + (mFrontMetrics.bottom - mFrontMetrics.top) / 2 + mFrontMetrics.bottom
+        canvas.drawLine(0f, bottom, 1000f, bottom, mPaint)
+
+        var ascent =
+            height / 2 + (mFrontMetrics.bottom - mFrontMetrics.top) / 2 + mFrontMetrics.ascent
+        canvas.drawLine(0f, ascent, 1000f, ascent, mPaint)
+
+        var descent =
+            height / 2 + (mFrontMetrics.bottom - mFrontMetrics.top) / 2 - mFrontMetrics.descent
+        canvas.drawLine(0f, descent, 1000f, descent, mPaint)
+
+        var middle = height / 2f
+        canvas.drawLine(0f, middle, 1000f, middle, mPaint)
+
+
+
+        Log.i(
+            "yxf",
+            "${mFrontMetrics.top} ${mFrontMetrics.bottom}  ${mFrontMetrics.ascent}  ${mFrontMetrics.descent}"
         )
     }
 
