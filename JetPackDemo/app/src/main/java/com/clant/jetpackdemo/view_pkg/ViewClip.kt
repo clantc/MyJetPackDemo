@@ -14,7 +14,6 @@ class ViewClip : AppCompatTextView {
     private var mPaint: Paint
     private var mPaint2: Paint
     private var mRect: RectF
-    private var mRect2: RectF
     private var mChangeValue: Float = 0f
     private var txtShow = "显示内容helloworld"
     private var txtRect: Rect
@@ -27,7 +26,7 @@ class ViewClip : AppCompatTextView {
         defStyleAttr
     ) {
         setLayerType(View.LAYER_TYPE_SOFTWARE, null)
-        setBackgroundColor(Color.WHITE)
+        setBackgroundColor(Color.GREEN)
         mPaint = Paint()
         mPaint.strokeCap = Paint.Cap.BUTT
         mPaint.strokeWidth = dp2px(1).toFloat()
@@ -45,7 +44,6 @@ class ViewClip : AppCompatTextView {
         mPaint2.textSize = dp2px(30)
 
         mRect = RectF()
-        mRect2 = RectF()
 
         var animator = ValueAnimator.ofFloat(0f, 1f)
         animator.setRepeatCount(ValueAnimator.INFINITE)

@@ -33,10 +33,9 @@
 
         <com.clant.jetpackdemo.view_pkg.ViewClip
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="70dp"
             android:layout_below="@+id/viewspeed"
-            android:layout_marginTop="20dp"
-             />
+            android:layout_marginTop="20dp" />
 
     </RelativeLayout>
 
