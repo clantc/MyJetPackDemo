@@ -32,10 +32,16 @@
             app:tv_value="jEhqp" />
 
         <com.clant.jetpackdemo.view_pkg.ViewClip
+            android:id="@+id/viewclip"
             android:layout_width="match_parent"
             android:layout_height="70dp"
             android:layout_below="@+id/viewspeed"
             android:layout_marginTop="20dp" />
+
+        <com.clant.jetpackdemo.view_pkg.ViewFivePoint
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/viewclip" />
 
     </RelativeLayout>
 
