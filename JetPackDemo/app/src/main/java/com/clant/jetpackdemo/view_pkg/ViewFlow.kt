@@ -107,7 +107,6 @@ class ViewFlow : ViewGroup {
     private var lastY = 0
 
     override fun onTouchEvent(event: MotionEvent?): Boolean {
-        awakenScrollBars()
         when (event?.action) {
             MotionEvent.ACTION_DOWN -> {
                 if (!mScroller.isFinished) {
@@ -116,7 +115,6 @@ class ViewFlow : ViewGroup {
                 lastY = event.y.toInt()
             }
             MotionEvent.ACTION_MOVE -> {
-                Log.i(ycq, "move>>>>||${scrollY}")
                 mScroller.startScroll(0, mScroller.finalY, 0, (lastY - event.y).toInt());
                 invalidate();
                 lastY = event.y.toInt()
@@ -124,7 +122,16 @@ class ViewFlow : ViewGroup {
             }
             MotionEvent.ACTION_UP -> {
                 if (scrollY <= 0) {
-                    scrollTo(0, 1)
+                    mScroller.startScroll(0, mScroller.finalY, 0, -mScroller.finalY);
+                    lastY = 0
+                    invalidate()
+                } else if (scrollY > viewHeight - screenHeight) {
+                    //下滑超出内容距离时进行回弹
+                    //mScroller.finalY为当前y的滑动的距离
+                    //由于当前view计算不准确，所以view的总高度以2600计算
+                    //-mScroller.finalY + 2600为当前手指滑动超出view的范围
+                    mScroller.startScroll(0, mScroller.finalY, 0, -mScroller.finalY + 2600);
+                    lastY = 0
                     invalidate()
                 }
             }
@@ -138,8 +145,10 @@ class ViewFlow : ViewGroup {
 
     override fun computeScroll() {
         super.computeScroll()
+        Log.i(ycq, "mScroller.currY:${mScroller.currY} || ${scrollY}")
+        //判断view是否还可以移动，对相关距离根据插值器进行计算
         if (mScroller.computeScrollOffset()) {
-//            Log.i(ycq, ">>>>||${mScroller.currY}")
+            //取出计算的结果，进行赋值
             scrollTo(0, mScroller.currY)
             postInvalidate()
         }
@@ -158,7 +167,7 @@ class ViewFlow : ViewGroup {
     override fun computeVerticalScrollOffset(): Int {
         //根据屏幕显示的高度，与view实际的高度，计算显示的位置的比例，然后减去进度条的长度
         //（减去进度条的长度的目的是防止进度条到底部时候全部被隐藏）
-        return (scrollY / (viewHeight - screenHeight).toFloat() * screenHeight).roundToInt() - 100
+        return (scrollY / (viewHeight - screenHeight).toFloat() * (screenHeight - 100)).roundToInt()
     }
 
 //    private var mDownX = 0f;
@@ -182,10 +191,6 @@ class ViewFlow : ViewGroup {
 
 }
 
-
-fun main() {
-    println(452 / 2631.toFloat())
-}
 
 
 
